@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+function run_clean {
+  mutagen project terminate
+  rm -fr _build deps assets/node_modules
+  docker-compose down --rmi=all --volumes
+}
+
+function print_help_for_clean {
+  cat << EOF
+# clean
+
+shortcut: cl
+
+The 'clean' command tears down the application and removes all built images and
+volumes.
+
+This is useful to completely start over.
+EOF
+}
+

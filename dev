@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+commands_dir="${script_dir}/.dev/*"
+for c in ${commands_dir}; do
+  source ${c}
+done
+
+function print_usage {
+  echo "Usage: ./dev [command] [args]"
+}
+
+function show_help {
+  cat  << EOF
+The following commands are supported:
+
+./dev create                # Create a new project
+./dev start                 # Start the development stack
+./dev stop                  # Stop the development stack
+./dev rebuild               # Rebuild the images and restart the development stack
+./dev clean                 # Reset the stack (including volumes and images)
+./dev execute               # Run arbitrary command in a container
+
+To get information about a single command use ./dev [command] --help
+EOF
+}
+
+function maybe_show_command_help {
+  if [ "${1}" == "--help" ]; then
+    return
+  fi
+  if [ "${2}" != "--help" ]; then
+    return
+  fi
+  case ${command} in
+    "create")
+      print_help_for_create
+      ;;
+    "start"|"s")
+      print_help_for_start
+      ;;
+    "stop"|"st")
+      print_help_for_stop
+      ;;
+    "rebuild"|"rb")
+      print_help_for_rebuild
+      ;;
+    "clean"|"cl")
+      print_help_for_clean
+      ;;
+    "execute"|"e")
+      print_help_for_execute
+      ;;
+    *) echo "No help found for '${command}'"
+  esac
+  exit 0
+}
+
+function main {
+  local command=${1}
+  local args="${@:2}"
+  maybe_show_command_help ${command} ${args}
+  case ${command} in
+    "--help")
+      show_help
+      ;;
+    "create")
+      run_create ${args}
+      ;;
+    "start"|"s")
+      run_start
+      ;;
+    "stop"|"st")
+      run_stop
+      ;;
+    "rebuild"|"rb")
+      run_rebuild
+      ;;
+    "clean"|"cl")
+      run_clean
+      ;;
+    "execute"|"e")
+      run_execute ${args}
+      ;;
+    *) print_usage; echo; show_help
+  esac
+}
+
+main $@
+

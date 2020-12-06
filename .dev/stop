@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function shutdown {
+  echo "Shutting down..."
+  mutagen project pause
+  echo "done"
+}
+
+function run_stop {
+  shutdown
+}
+
+function print_help_for_stop {
+  cat << EOF
+# stop
+
+shortcut: st
+
+The 'stop' command will stop the stack. All data and containers will be preserved.
+EOF
+}
+

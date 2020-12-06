@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+function check_command {
+  local command=$1
+  command ${command} >/dev/null 2>&1
+  if [ "$?" != "0" ]; then
+    echo "⨯ ${command} not found"
+    echo "Please install ${command}!"
+    exit 1
+  fi
+  echo "✓ ${command} found"
+}
+
+function check_requirements {
+  check_command "docker"
+  check_command "mutagen"
+}
+

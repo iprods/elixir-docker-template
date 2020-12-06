@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+function run_create {
+  check_requirements
+  mutagen project start
+  docker-compose stop app
+  local command="${@}"
+  run_execute app ${command}
+  echo "mutagen.yml.lock" >> .gitignore
+  cat << EOF
+Project was successfully created. Please check the Docker setup for tweaks
+fitting your needs.
+
+Happy coding!
+EOF
+}
+
+function print_help_for_create {
+  cat << EOF
+# create
+
+The 'create' command checks if the required tools (Docker, Mutagen) are available.
+If so it will check and create or load the images needed for the application.
+
+The command expects the arguments to create the project.
+
+An example would be:
+
+./dev create mix new . --app my_app
+
+You can overwrite all files asked for.
+EOF
+}
+

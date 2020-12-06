@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+function startup {
+  echo "Starting stack. This might take a while on the first run."
+  mutagen project start || mutagen project resume
+}
+
+function attach_to_app {
+  echo "Attaching to the application container. Use Ctrl+p Ctrl+q to leave. Use Ctrl-c (twice) to shutdown the app container."
+  docker attach $(docker-compose ps -q app)
+}
+
+function run_start {
+  check_requirements
+  startup
+  attach_to_app
+}
+
+function print_help_for_start {
+  cat << EOF
+# start
+
+shortcut: s
+
+The 'start' command checks if the required tools (Docker, Mutagen) are available.
+If so it will check and create or load the images needed for the application.
+It starts the application stack with all containers and opens the logs.
+
+Stop the command with ctrl-c. This will stop only the web container.
+EOF
+}
+

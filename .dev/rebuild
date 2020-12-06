@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+function run_rebuild {
+  mutagen project terminate
+}
+
+function print_help_for_rebuild {
+  cat << EOF
+# rebuild
+
+shortcut: rb
+
+The 'rebuild' command will tear down and rebuild the containers.
+The volumes and images will be preserved.
+EOF
+}
+
