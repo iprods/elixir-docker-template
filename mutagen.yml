@@ -20,7 +20,7 @@ afterTerminate:
   - docker-compose down
 
 forward:
-  web:
+  app:
     source: "tcp:localhost:4000"
     destination: "docker://template-mutagen:tcp:app:4000"
 
