@@ -22,7 +22,7 @@ afterTerminate:
 forward:
   web:
     source: "tcp:localhost:4000"
-    destination: "docker://template-mutagen:tcp:web:4000"
+    destination: "docker://template-mutagen:tcp:app:4000"
 
 # Synchronize code to the shared Docker volume via the Mutagen service.
 sync:
