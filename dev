@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 commands_dir="${script_dir}/.dev/*"
 for c in ${commands_dir}; do
   source ${c}
 done
+
+mutagen_enabled=0
+
+function detect_mutagen_support {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    command -v mutagen >/dev/null 2>&1 && mutagen_enabled=1
+  fi
+}
 
 function print_usage {
   echo "Usage: ./dev [command] [args]"
@@ -30,7 +40,8 @@ function maybe_show_command_help {
   if [ "${1}" == "--help" ]; then
     return
   fi
-  if [ "${2}" != "--help" ]; then
+  local args=${2:-noop}
+  if [ "${args}" != "--help" ]; then
     return
   fi
   case ${command} in
@@ -57,8 +68,15 @@ function maybe_show_command_help {
   exit 0
 }
 
+COMMAND_PREFIX=""
 function main {
-  local command=${1}
+  docker_compose="docker-compose"
+  detect_mutagen_support
+  if [[ "${mutagen_enabled}" == "1" ]]; then
+    echo "Mutagen is supported"
+    docker_compose="docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml"
+  fi
+  local command="${1:-help}"
   local args="${@:2}"
   maybe_show_command_help ${command} ${args}
   case ${command} in

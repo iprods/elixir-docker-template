@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 function run_clean {
-  mutagen project terminate
+  if [[ "${mutagen_enabled}" == "1" ]]; then
+    mutagen project terminate
+  fi
   rm -fr _build deps assets/node_modules
-  docker-compose down --rmi=all --volumes
+  ${docker_compose} down --rmi=all --volumes
 }
 
 function print_help_for_clean {

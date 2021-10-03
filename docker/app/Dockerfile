@@ -1,4 +1,4 @@
-FROM hexpm/elixir:1.11.4-erlang-23.3.1-debian-buster-20210326
+FROM hexpm/elixir:1.12.1-erlang-24.1.1-debian-bullseye-20210902
 # Install basic dependencies see https://medium.com/@ricardo.trindade743/setting-up-phoenix-postgresql-with-docker-compose-for-local-development-afeb4a4ace6c
 RUN apt-get update -qq && \
     apt-get -y --allow-unauthenticated install\
@@ -9,17 +9,15 @@ RUN apt-get update -qq && \
       git\
       make\
       erlang-crypto\
+      inotify-tools\
       apt-transport-https
-
-#RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-#    apt-get install -y inotify-tools nodejs
 
 RUN mkdir /app
 WORKDIR /app
 
 RUN mix local.hex --force \
     && mix local.rebar --force \
-#    && mix archive.install hex phx_new 1.5.8 --force \
+#    && mix archive.install hex phx_new 1.6.0 --force \
     && echo
 
 COPY run.sh /

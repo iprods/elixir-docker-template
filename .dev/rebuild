@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 function run_rebuild {
-  mutagen project terminate
+  if [[ "${mutagen_enabled}" == "1" ]]; then
+    mutagen project terminate
+  fi
 }
 
 function print_help_for_rebuild {

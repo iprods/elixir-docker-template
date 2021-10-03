@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  mutagen:
+    build: ./docker/mutagen
+    init: true
+    container_name: template-mutagen
+    volumes:
+      - app:/app
+      - build:/app/_build
+
+volumes:
+  app:

@@ -2,12 +2,16 @@
 
 function startup {
   echo "Starting stack. This might take a while on the first run."
-  mutagen project start || mutagen project resume
+  if [[ "${mutagen_enabled}" == "1" ]]; then
+    mutagen project start || mutagen project resume
+  else
+    docker-compose start
+  fi
 }
 
 function attach_to_app {
   echo "Attaching to the application container. Use Ctrl+p Ctrl+q to leave. Use Ctrl-c (twice) to shutdown the app container."
-  docker attach $(docker-compose ps -q app)
+  docker attach $(${COMMAND_PREFIX} docker-compose ps -q app)
 }
 
 function run_start {
