@@ -29,7 +29,8 @@ You need to have the following installed:
 - [Mutagen](https://mutagen.io) for code syncing (optional)
 
 > Mutagen is used to overcome the slow bind mounting on platforms like macOS.
-> Note that the use of Mutagen is optional.
+> Note that the use of Mutagen is optional and will only be used if installed
+> and the host machine is macOS.
 
 ## Usage
 
@@ -80,6 +81,24 @@ and replace occurrences in the followind file:
 
 - `docker-compose.yml`
 - `mutagen.yml`
+
+## Setting up a Phoenix LiveView project
+
+This is an example of what needs to be done additionally when setting up a
+Phoenix LiveView project.
+
+- Set up the project via template
+- Change the `docker-compose.yml` and comment in the DB container
+- Adapt the `docker/app/Dockerfile` and comment in the Postgres client and
+  `phx_new` part
+- Change the `mutagen.yml` and `docker-compose.mutagen.yml` with a fitting name
+  for the container (optional)
+- Run `./dev create mix phx.new . --app app_name --live`
+  - Answer all question except the dependency installation with `yes`
+- Stop the stack with `./dev clean`
+- Change the `config/dev.exs` and set the database `hostname` to `db` and the
+  endpoint config to have `http: [ip: {0, 0, 0, 0}, port: 4000],`
+- Start the project with `./dev start`
 
 ## License
 
