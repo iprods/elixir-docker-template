@@ -40,7 +40,7 @@ function maybe_show_command_help {
   if [ "${1}" == "--help" ]; then
     return
   fi
-  args=${2:-noop}
+  local args=${2:-noop}
   if [ "${args}" != "--help" ]; then
     return
   fi
@@ -76,11 +76,7 @@ function main {
     echo "Mutagen is supported"
     docker_compose="docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml"
   fi
-  if [ $# -eq 0 ]; then
-    local command=help
-  else
-    local command=${1}
-  fi
+  local command="${1:-help}"
   local args="${@:2}"
   maybe_show_command_help ${command} ${args}
   case ${command} in
