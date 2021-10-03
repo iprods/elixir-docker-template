@@ -11,7 +11,7 @@ MUTAGEN_ENABLED=0
 
 function detect_mutagen_support {
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    command -v mutagen >/dev/null 2>&1 && MUTAGEN_ENABLED=1 && echo "Using Mutagen"
+    command -v mutagen >/dev/null 2>&1 && MUTAGEN_ENABLED=1
   fi
 }
 
@@ -67,8 +67,10 @@ function maybe_show_command_help {
 
 COMMAND_PREFIX=""
 function main {
+  docker_compose="docker-compose"
   if [[ "${MUTAGEN_ENABLED}" == "1" ]]; then
-    COMMAND_PREFIX="mutagen project run"
+    echo "Mutagen is supported"
+    docker_compose="docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml"
   fi
   local command=${1}
   local args="${@:2}"

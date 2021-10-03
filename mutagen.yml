@@ -19,9 +19,6 @@ beforeResume:
 afterTerminate:
   - docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml down
 
-commands:
-  docker-compose: docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml
-
 # Synchronize code to the shared Docker volume via the Mutagen service.
 sync:
   defaults:
