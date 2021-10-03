@@ -19,10 +19,13 @@ services:
       - default
 
         #  db:
-        #    image: postgres:12.6-alpine
+        #    image: postgres:12.8-alpine
         #    command: 'postgres -c "max_connections=200"'
         #    ports:
         #      - 5432:5432
+        #    environment:
+        #      POSTGRES_USER: postgres
+        #      POSTGRES_PASSWORD: postgres
         #    volumes:
         #      - type: volume
         #        source: postgres-data
@@ -31,6 +34,7 @@ services:
         #          nocopy: true
         #    networks:
         #      - default
+
 volumes:
   #  postgres-data:
   build:
