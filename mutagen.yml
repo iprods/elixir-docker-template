@@ -19,6 +19,11 @@ beforeResume:
 afterTerminate:
   - docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml down
 
+forward:
+   app:
+     source: "tcp:localhost:4000"
+     destination: "docker://template-mutagen:tcp:app:4000"
+
 # Synchronize code to the shared Docker volume via the Mutagen service.
 sync:
   defaults:

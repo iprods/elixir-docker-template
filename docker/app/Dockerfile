@@ -9,6 +9,7 @@ RUN apt-get update -qq && \
       git\
       make\
       erlang-crypto\
+      inotify-tools\
       apt-transport-https
 
 RUN mkdir /app
