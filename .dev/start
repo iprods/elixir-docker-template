@@ -2,7 +2,7 @@
 
 function startup {
   echo "Starting stack. This might take a while on the first run."
-  if [[ "${MUTAGEN_ENABLED}" == "1" ]]; then
+  if [[ "${mutagen_enabled}" == "1" ]]; then
     mutagen project start || mutagen project resume
   else
     docker-compose start

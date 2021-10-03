@@ -2,7 +2,7 @@
 
 function run_create {
   check_requirements
-  if [[ "${MUTAGEN_ENABLED}" == "1" ]]; then
+  if [[ "${mutagen_enabled}" == "1" ]]; then
     mutagen project start
   fi
   ${docker_compose} stop app

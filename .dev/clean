@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function run_clean {
-  if [[ "$MUTAGEN_ENABLED" == "1" ]]; then
+  if [[ "${mutagen_enabled}" == "1" ]]; then
     mutagen project terminate
   fi
   rm -fr _build deps assets/node_modules
