@@ -7,6 +7,14 @@ for c in ${commands_dir}; do
   source ${c}
 done
 
+MUTAGEN_ENABLED=0
+
+function detect_mutagen_support {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    command -v mutagen >/dev/null 2>&1 && MUTAGEN_ENABLED=1 && echo "Using Mutagen"
+  fi
+}
+
 function print_usage {
   echo "Usage: ./dev [command] [args]"
 }
@@ -57,7 +65,11 @@ function maybe_show_command_help {
   exit 0
 }
 
+COMMAND_PREFIX=""
 function main {
+  if [[ "${MUTAGEN_ENABLED}" == "1" ]]; then
+    COMMAND_PREFIX="mutagen project run"
+  fi
   local command=${1}
   local args="${@:2}"
   maybe_show_command_help ${command} ${args}

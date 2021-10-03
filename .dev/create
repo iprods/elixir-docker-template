@@ -2,8 +2,10 @@
 
 function run_create {
   check_requirements
-  mutagen project start
-  docker-compose stop app
+  if [[ "${MUTAGEN_ENABLED}" == "1" ]]; then
+    mutagen project start
+  fi
+  ${COMMAND_PREFIX} docker-compose stop app
   local command="${@}"
   run_execute app ${command}
   echo "mutagen.yml.lock" >> .gitignore

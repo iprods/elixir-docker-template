@@ -1,28 +1,26 @@
 # Set up the Mutagen service and code volume before creating sessions.
 beforeCreate:
-  - docker-compose up --build --detach mutagen
+  - docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml up --build --detach mutagen
 
 # Set up the main services after creating sessions. At this point, sessions will
 # have been established and code pushed to the shared volume.
 afterCreate:
-  - docker-compose up --build --detach
+  - docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml up --build --detach
 
 # Pause services after pausing sessions.
 afterPause:
-  - docker-compose stop
+  - docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml stop
 
 # Resume services before resume sessions.
 beforeResume:
-  - docker-compose start
+  - docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml start
 
 # Tear down all services and remove the code volume after terminating sessions.
 afterTerminate:
-  - docker-compose down
+  - docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml down
 
-forward:
-  web:
-    source: "tcp:localhost:4000"
-    destination: "docker://template-mutagen:tcp:app:4000"
+commands:
+  docker-compose: docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml
 
 # Synchronize code to the shared Docker volume via the Mutagen service.
 sync:

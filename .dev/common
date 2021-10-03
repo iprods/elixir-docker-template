@@ -13,6 +13,6 @@ function check_command {
 
 function check_requirements {
   check_command "docker"
-  check_command "mutagen"
+  check_command "docker-compose"
 }
 

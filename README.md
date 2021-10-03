@@ -25,10 +25,11 @@ help to miss some hurdles.
 
 You need to have the following installed:
 
-- [Mutagen](https://mutagen.io) for code syncing
 - [Docker](https://docker.io) for running the code
+- [Mutagen](https://mutagen.io) for code syncing (optional)
 
 > Mutagen is used to overcome the slow bind mounting on platforms like macOS.
+> Note that the use of Mutagen is optional.
 
 ## Usage
 

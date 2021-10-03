@@ -11,15 +11,12 @@ RUN apt-get update -qq && \
       erlang-crypto\
       apt-transport-https
 
-#RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-#    apt-get install -y inotify-tools nodejs
-
 RUN mkdir /app
 WORKDIR /app
 
 RUN mix local.hex --force \
     && mix local.rebar --force \
-#    && mix archive.install hex phx_new 1.5.8 --force \
+#    && mix archive.install hex phx_new 1.6.0 --force \
     && echo
 
 COPY run.sh /

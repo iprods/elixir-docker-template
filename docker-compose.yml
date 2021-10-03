@@ -1,13 +1,5 @@
 version: '3.7'
 services:
-  mutagen:
-    build: ./docker/mutagen
-    init: true
-    container_name: template-mutagen
-    volumes:
-      - app:/app
-      - build:/app/_build
-
   app:
     build: ./docker/app
     stdin_open: true
@@ -43,3 +35,9 @@ volumes:
   #  postgres-data:
   build:
   app:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: .
+
