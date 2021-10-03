@@ -11,7 +11,7 @@ are other ways like f.e. `asdf` to achieve this but for quickly checking out a
 project for instance Docker is a nice solution.
 
 Further this should help to get other people onboarded more easily as the stack
-specific are "hidden" by Docker.
+specifics are "hidden" by Docker.
 
 Lastly the ability to develop under a production alike system environment might
 help to miss some hurdles.
