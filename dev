@@ -76,7 +76,11 @@ function main {
     echo "Mutagen is supported"
     docker_compose="docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml"
   fi
-  local command=${1:-help}
+  if [ $# -eq 0 ]; then
+    local command=help
+  else
+    local command=${1}
+  fi
   local args="${@:2}"
   maybe_show_command_help ${command} ${args}
   case ${command} in
