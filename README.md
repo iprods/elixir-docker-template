@@ -91,9 +91,10 @@ Phoenix LiveView project.
 - Change the `docker-compose.yml` and comment in the DB container
 - Adapt the `docker/app/Dockerfile` and comment in the Postgres client and
   `phx_new` part
+- Adapt the `docker/app/run.sh` script
 - Change the `mutagen.yml` and `docker-compose.mutagen.yml` with a fitting name
   for the container (optional)
-- Run `./dev create mix phx.new . --app app_name --live`
+- Run `./dev create mix phx.new . --app app_name`
   - Answer all question except the dependency installation with `yes`
 - Stop the stack with `./dev clean`
 - Change the `config/dev.exs` and set the database `hostname` to `db` and the
