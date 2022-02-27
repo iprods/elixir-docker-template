@@ -39,12 +39,13 @@ or use this template as a starting point.
 
 Per default the template does start an IEx session without anything else.
 
-### Create a mix project
+### Init and create a mix project
 
 To use the template for a mix based environment you can use the `dev` script by
 running:
 
 ```
+./dev init my_app
 ./dev create mix new . --app my_app  # Create a mix app name `my_app`
 ```
 
