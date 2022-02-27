@@ -12,9 +12,7 @@ done
 mutagen_enabled=0
 
 function detect_mutagen_support {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    command -v mutagen >/dev/null 2>&1 && mutagen_enabled=1
-  fi
+  command -v mutagen >/dev/null 2>&1 && mutagen_enabled=1
 }
 
 function print_usage {
@@ -22,7 +20,7 @@ function print_usage {
 }
 
 function show_help {
-  cat  << EOF
+  cat << EOF
 The following commands are supported:
 
 ./dev create                # Create a new project
