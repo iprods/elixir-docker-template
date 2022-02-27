@@ -12,9 +12,7 @@ done
 mutagen_enabled=0
 
 function detect_mutagen_support {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    command -v mutagen >/dev/null 2>&1 && mutagen_enabled=1
-  fi
+  command -v mutagen >/dev/null 2>&1 && mutagen_enabled=1
 }
 
 function print_usage {
@@ -22,9 +20,10 @@ function print_usage {
 }
 
 function show_help {
-  cat  << EOF
+  cat << EOF
 The following commands are supported:
 
+./dev init                  # Init a new project
 ./dev create                # Create a new project
 ./dev start                 # Start the development stack
 ./dev stop                  # Stop the development stack
@@ -45,6 +44,9 @@ function maybe_show_command_help {
     return
   fi
   case ${command} in
+    "init")
+      print_help_for_init
+      ;;
     "create")
       print_help_for_create
       ;;
@@ -82,6 +84,9 @@ function main {
   case ${command} in
     "--help")
       show_help
+      ;;
+    "init")
+      run_init ${args}
       ;;
     "create")
       run_create ${args}

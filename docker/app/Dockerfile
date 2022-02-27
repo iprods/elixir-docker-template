@@ -1,4 +1,4 @@
-FROM hexpm/elixir:1.12.3-erlang-24.1.3-debian-bullseye-20210902-slim
+FROM hexpm/elixir:1.13.3-erlang-24.2.2-debian-bullseye-20210902-slim
 # Install basic dependencies see https://medium.com/@ricardo.trindade743/setting-up-phoenix-postgresql-with-docker-compose-for-local-development-afeb4a4ace6c
 RUN apt-get update -qq && \
     apt-get -y --allow-unauthenticated install\
@@ -17,7 +17,7 @@ WORKDIR /app
 
 RUN mix local.hex --force \
     && mix local.rebar --force \
-#    && mix archive.install hex phx_new 1.6.0 --force \
+#    && mix archive.install hex phx_new --force \
     && echo
 
 COPY run.sh /
