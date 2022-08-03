@@ -2,7 +2,7 @@
 
 function startup {
   echo "Starting stack. This might take a while on the first run."
-  ${docker_compose} start
+  ${docker_compose} up -d
 }
 
 function attach_to_app {
