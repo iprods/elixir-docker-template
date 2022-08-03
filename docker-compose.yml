@@ -33,6 +33,11 @@ services:
         #          nocopy: true
         #    networks:
         #      - default
+
+volumes:
+  #  postgres-data:
+  app:
+
 # Define synchronization and forwarding sessions
 x-mutagen:
   sync:
@@ -42,8 +47,4 @@ x-mutagen:
     app:
       alpha: "."
       beta: "volume://app"
-
-volumes:
-  #  postgres-data:
-  app:
 
