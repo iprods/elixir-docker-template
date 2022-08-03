@@ -45,7 +45,6 @@ To use the template for a mix based environment you can use the `dev` script by
 running:
 
 ```
-./dev init my_app
 ./dev create mix new . --app my_app  # Create a mix app name `my_app`
 ```
 
@@ -81,20 +80,17 @@ more meaningful than f.e. `template-mutagen` for the sync container. Please chec
 and replace occurrences in the followind file:
 
 - `docker-compose.yml`
-- `mutagen.yml`
 
-## Setting up a Phoenix LiveView project
+## Setting up a Phoenix project
 
 This is an example of what needs to be done additionally when setting up a
-Phoenix LiveView project.
+Phoenix project.
 
 - Set up the project via template
 - Change the `docker-compose.yml` and comment in the DB container
 - Adapt the `docker/app/Dockerfile` and comment in the Postgres client and
   `phx_new` part
 - Adapt the `docker/app/run.sh` script
-- Change the `mutagen.yml` and `docker-compose.mutagen.yml` with a fitting name
-  for the container (optional)
 - Run `./dev create mix phx.new . --app app_name`
   - Answer all question except the dependency installation with `yes`
 - Stop the stack with `./dev clean`

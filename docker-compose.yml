@@ -6,7 +6,6 @@ services:
     tty: true
     volumes:
       - app:/app
-      - build:/app/_build
         #    environment:
         #      - DATABASE_URL=postgres://postgres@db:5432/template_dev
         #      - DATABASE_TEST_URL=postgres://postgres@db:5432/template_test
@@ -34,14 +33,17 @@ services:
         #          nocopy: true
         #    networks:
         #      - default
+# Define synchronization and forwarding sessions
+x-mutagen:
+  sync:
+    defaults:
+      ignore:
+        vcs: true
+    app:
+      alpha: "."
+      beta: "volume://app"
 
 volumes:
   #  postgres-data:
-  build:
   app:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: .
 

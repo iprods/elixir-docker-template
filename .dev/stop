@@ -2,11 +2,7 @@
 
 function shutdown {
   echo "Shutting down..."
-  if [[ "${mutagen_enabled}" == "1" ]]; then
-    mutagen project pause
-  else
-    docker-compose stop
-  fi
+  docker-compose stop
   echo "done"
 }
 

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 function run_rebuild {
-  if [[ "${mutagen_enabled}" == "1" ]]; then
-    mutagen project terminate
-  fi
+  ${docker_compose} down && ${docker_compose} build
 }
 
 function print_help_for_rebuild {
