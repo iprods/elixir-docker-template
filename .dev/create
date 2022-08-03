@@ -9,13 +9,9 @@ function run_create {
     exit 1
   fi
   check_requirements
-  if [[ "${mutagen_enabled}" == "1" ]]; then
-    mutagen project start
-  fi
   ${docker_compose} stop app
   local command="${@}"
   run_execute app ${command}
-  echo "mutagen.yml.lock" >> .gitignore
   cat << EOF
 Project was successfully created. Please check the Docker setup for tweaks
 fitting your needs.

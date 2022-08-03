@@ -12,7 +12,9 @@ done
 mutagen_enabled=0
 
 function detect_mutagen_support {
-  command -v mutagen >/dev/null 2>&1 && mutagen_enabled=1
+  command -v mutagen >/dev/null 2>&1 \
+    && command -v mutagen-compose >/dev/null 2>&1 \
+    && mutagen_enabled=1
 }
 
 function print_usage {
@@ -23,7 +25,6 @@ function show_help {
   cat << EOF
 The following commands are supported:
 
-./dev init                  # Init a new project
 ./dev create                # Create a new project
 ./dev start                 # Start the development stack
 ./dev stop                  # Stop the development stack
@@ -44,9 +45,6 @@ function maybe_show_command_help {
     return
   fi
   case ${command} in
-    "init")
-      print_help_for_init
-      ;;
     "create")
       print_help_for_create
       ;;
@@ -70,13 +68,12 @@ function maybe_show_command_help {
   exit 0
 }
 
-COMMAND_PREFIX=""
 function main {
-  docker_compose="docker-compose"
+  docker_compose="docker compose"
   detect_mutagen_support
   if [[ "${mutagen_enabled}" == "1" ]]; then
     echo "Mutagen is supported"
-    docker_compose="docker-compose -f docker-compose.yml -f docker-compose.mutagen.yml"
+    docker_compose="mutagen-compose"
   fi
   local command="${1:-help}"
   local args="${@:2}"
@@ -84,9 +81,6 @@ function main {
   case ${command} in
     "--help")
       show_help
-      ;;
-    "init")
-      run_init ${args}
       ;;
     "create")
       run_create ${args}
