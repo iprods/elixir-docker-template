@@ -33,7 +33,6 @@ services:
         #          nocopy: true
         #    networks:
         #      - default
-
 volumes:
   #  postgres-data:
   app:
@@ -47,4 +46,3 @@ x-mutagen:
     app:
       alpha: "."
       beta: "volume://app"
-
