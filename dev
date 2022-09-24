@@ -6,7 +6,8 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 commands_dir="${script_dir}/.dev/*"
 for c in ${commands_dir}; do
-  source ${c}
+  # shellcheck disable=SC1090
+  source "${c}"
 done
 
 mutagen_enabled=0
@@ -31,6 +32,8 @@ The following commands are supported:
 ./dev rebuild               # Rebuild the images and restart the development stack
 ./dev clean                 # Reset the stack (including volumes and images)
 ./dev execute               # Run arbitrary command in a container
+./dev mix                   # Run mix commands in the app container
+./dev npm                   # Run npm commands in the assets container
 
 To get information about a single command use ./dev [command] --help
 EOF
@@ -63,6 +66,12 @@ function maybe_show_command_help {
     "execute"|"e")
       print_help_for_execute
       ;;
+    "mix"|"m")
+      print_help_for_mix
+      ;;
+    "npm"|"n")
+      print_help_for_npm
+      ;;
     *) echo "No help found for '${command}'"
   esac
   exit 0
@@ -72,17 +81,18 @@ function main {
   docker_compose="docker compose"
   detect_mutagen_support
   if [[ "${mutagen_enabled}" == "1" ]]; then
-    echo "Mutagen is supported"
+    # shellcheck disable=SC2034
     docker_compose="mutagen-compose"
   fi
   local command="${1:-help}"
-  local args="${@:2}"
-  maybe_show_command_help ${command} ${args}
+  local args="${*:2}"
+  maybe_show_command_help "${command}" "${args}"
   case ${command} in
     "--help")
       show_help
       ;;
     "create")
+      # shellcheck disable=SC2086
       run_create ${args}
       ;;
     "start"|"s")
@@ -98,11 +108,20 @@ function main {
       run_clean
       ;;
     "execute"|"e")
+      # shellcheck disable=SC2086
       run_execute ${args}
+      ;;
+    "mix"|"m")
+      # shellcheck disable=SC2086
+      run_mix ${args}
+      ;;
+    "npm"|"n")
+      # shellcheck disable=SC2086
+      run_npm ${args}
       ;;
     *) print_usage; echo; show_help
   esac
 }
 
-main $@
+main "$@"
 
