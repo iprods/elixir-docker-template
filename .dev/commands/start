@@ -2,12 +2,14 @@
 
 function startup {
   echo "Starting stack. This might take a while on the first run."
-  ${docker_compose} up -d
+  # shellcheck disable=SC2154
+  ${docker_compose} up --quiet-pull -d
 }
 
 function attach_to_app {
   echo "Attaching to the application container. Use Ctrl+p Ctrl+q to leave. Use Ctrl-c (twice) to shutdown the app container."
-  docker attach $(docker-compose ps -q app)
+  # shellcheck disable=SC2154
+  docker attach "$(docker compose ps -q app)"
 }
 
 function run_start {

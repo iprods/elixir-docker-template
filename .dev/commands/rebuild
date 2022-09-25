@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 function run_rebuild {
+  # shellcheck disable=SC2154
   ${docker_compose} down && ${docker_compose} build
 }
 

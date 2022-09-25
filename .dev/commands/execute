@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
 
-function run_detached_command {
-  local container_name=${1}
-  local command="${@:2}"
-  ${docker_compose} run --rm ${container_name} bash -c "${command}"
-}
-
 function run_execute {
   local container_name=${1}
-  local command="${@:2}"
-  run_detached_command ${container_name} "${command}"
+  local command="${*:2}"
+  run_detached_command "${container_name}" "bash" "${command}"
 }
 
 function print_help_for_execute {

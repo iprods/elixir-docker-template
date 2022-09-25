@@ -4,8 +4,13 @@ set -euo pipefail
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-commands_dir="${script_dir}/.dev/*"
+source "${script_dir}/.dev/common"
+
+commands_dir="${script_dir}/.dev/commands/*"
 for c in ${commands_dir}; do
+  if [ ! -f "${c}" ]; then
+    continue
+  fi
   # shellcheck disable=SC1090
   source "${c}"
 done
