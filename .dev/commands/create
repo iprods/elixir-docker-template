@@ -9,9 +9,11 @@ function run_create {
     exit 1
   fi
   check_requirements
+  # shellcheck disable=SC2154
   ${docker_compose} stop app
-  local command="${@}"
-  run_execute app ${command}
+  local command="${*}"
+  echo "Running '${command}' in app container"
+  run_execute app "${command}"
   cat << EOF
 Project was successfully created. Please check the Docker setup for tweaks
 fitting your needs.

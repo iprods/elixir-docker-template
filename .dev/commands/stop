@@ -2,7 +2,8 @@
 
 function shutdown {
   echo "Shutting down..."
-  docker-compose stop
+  # shellcheck disable=SC2154
+  ${docker_compose} stop
   echo "done"
 }
 

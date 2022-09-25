@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
 function run_clean {
+  echo "Removing generated files and dependencies..."
   rm -fr _build deps assets/node_modules
-  ${docker_compose} down --rmi=all --volumes
+  echo "done"
+  echo "Stopping stack and removing all images and volumes..."
+  # shellcheck disable=SC2154
+  ${docker_compose} down --rmi=local --volumes --remove-orphans
+  echo "done"
 }
 
 function print_help_for_clean {

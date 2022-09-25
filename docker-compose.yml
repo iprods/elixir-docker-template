@@ -17,22 +17,34 @@ services:
     networks:
       - default
 
-        #  db:
-        #    image: postgres:12.8-alpine
-        #    command: 'postgres -c "max_connections=200"'
-        #    ports:
-        #      - 5432:5432
-        #    environment:
-        #      POSTGRES_USER: postgres
-        #      POSTGRES_PASSWORD: postgres
-        #    volumes:
-        #      - type: volume
-        #        source: postgres-data
-        #        target: /var/lib/postgresql/data
-        #        volume:
-        #          nocopy: true
-        #    networks:
-        #      - default
+#  db:
+#    image: postgres:14.5-alpine
+#    command: 'postgres -c "max_connections=200"'
+#    ports:
+#      - 5432:5432
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: postgres
+#    volumes:
+#      - type: volume
+#        source: postgres-data
+#        target: /var/lib/postgresql/data
+#        volume:
+#          nocopy: true
+#    networks:
+#      - default
+
+#  # Standalone container for npm handling
+#  assets:
+#    build:
+#      context: .
+#      dockerfile: docker/assets/Dockerfile
+#    working_dir: /app/assets
+#    volumes:
+#      - app:/app
+#    profiles:
+#      - tools
+
 volumes:
   #  postgres-data:
   app:
