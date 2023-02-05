@@ -23,6 +23,8 @@ function detect_mutagen_support {
     && mutagen_enabled=1
 }
 
+use_mutagen=${USE_MUTAGEN:-1}
+
 function print_usage {
   echo "Usage: ./dev [command] [args]"
 }
@@ -85,7 +87,7 @@ function maybe_show_command_help {
 function main {
   docker_compose="docker compose"
   detect_mutagen_support
-  if [[ "${mutagen_enabled}" == "1" ]]; then
+  if [[ "${mutagen_enabled}" == "1" ]] && [[ "${use_mutagen}" == "1" ]]; then
     # shellcheck disable=SC2034
     docker_compose="mutagen-compose"
   fi
