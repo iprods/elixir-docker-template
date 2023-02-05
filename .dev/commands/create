@@ -26,7 +26,7 @@ function print_help_for_create {
   cat << EOF
 # create
 
-The 'create' command checks if the required tools (Docker, Mutagen) are available.
+The 'create' command checks if the required tools (Docker, optionally Mutagen) are available.
 If so it will check and create or load the images needed for the application.
 
 The command expects the arguments to create the project.

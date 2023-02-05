@@ -48,6 +48,12 @@ services:
 volumes:
   #  postgres-data:
   app:
+    # If no mutagen is desired bind mount
+    #    driver: local
+    #    driver_opts:
+    #      o: bind
+    #      type: none
+    #      device: .
 
 # Define synchronization and forwarding sessions
 x-mutagen:

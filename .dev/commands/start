@@ -24,7 +24,7 @@ function print_help_for_start {
 
 shortcut: s
 
-The 'start' command checks if the required tools (Docker, Mutagen) are available.
+The 'start' command checks if the required tools (Docker, optionally Mutagen) are available.
 If so it will check and create or load the images needed for the application.
 It starts the application stack with all containers and opens the logs.
 
