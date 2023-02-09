@@ -31,8 +31,8 @@ You need to have the following installed:
 > Mutagen is used to overcome the slow bind mounting on platforms like macOS.
 > Note that the use of Mutagen is optional and will only be used if installed
 > and the host machine is macOS.
-> It can be disabled though by providing `USE_MUTAGEN=0` as shell env var (e.g.
-> `USE_MUTAGEN=0 ./dev start`).
+> It can be enabled by providing `USE_MUTAGEN=1` as shell env var (e.g.
+> `USE_MUTAGEN=1 ./dev start`).
 
 ## Usage
 

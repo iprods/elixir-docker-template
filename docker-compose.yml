@@ -6,11 +6,11 @@ services:
     tty: true
     volumes:
       - app:/app
-        #    environment:
-        #      - DATABASE_URL=postgres://postgres@db:5432/template_dev
-        #      - DATABASE_TEST_URL=postgres://postgres@db:5432/template_test
-        #    depends_on:
-        #      - db
+#    environment:
+#      - DATABASE_URL=postgres://postgres@db:5432/template_dev
+#      - DATABASE_TEST_URL=postgres://postgres@db:5432/template_test
+#    depends_on:
+#      - db
     ports:
       - 4000:4000
     command: '/run.sh'
@@ -46,21 +46,21 @@ services:
 #      - tools
 
 volumes:
-  #  postgres-data:
+#  postgres-data:
   app:
-    # If no mutagen is desired bind mount
-    #    driver: local
-    #    driver_opts:
-    #      o: bind
-    #      type: none
-    #      device: .
+    # The lines below need to be removed when using mutagen
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: .
 
-# Define synchronization and forwarding sessions
-x-mutagen:
-  sync:
-    defaults:
-      ignore:
-        vcs: true
-    app:
-      alpha: "."
-      beta: "volume://app"
+# Define synchronization when using mutagen (remove the bind mount defiinition!!!)
+#x-mutagen:
+#  sync:
+#    defaults:
+#      ignore:
+#        vcs: true
+#    app:
+#      alpha: "."
+#      beta: "volume://app"
