@@ -23,7 +23,7 @@ function detect_mutagen_support {
     && mutagen_enabled=1
 }
 
-use_mutagen=${USE_MUTAGEN:-1}
+use_mutagen=${USE_MUTAGEN:-0}
 
 function print_usage {
   echo "Usage: ./dev [command] [args]"
