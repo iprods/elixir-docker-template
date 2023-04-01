@@ -2,7 +2,7 @@
 
 function run_rebuild {
   # shellcheck disable=SC2154
-  ${docker_compose} down && ${docker_compose} build
+  ${docker_compose} down && ${docker_compose} build --no-cache
 }
 
 function print_help_for_rebuild {
