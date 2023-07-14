@@ -1,4 +1,4 @@
-FROM hexpm/elixir:1.14.3-erlang-25.2.1-debian-bullseye-20230109-slim
+FROM hexpm/elixir:1.15.2-erlang-26.0.2-debian-bullseye-20230612-slim
 # Install basic dependencies see https://medium.com/@ricardo.trindade743/setting-up-phoenix-postgresql-with-docker-compose-for-local-development-afeb4a4ace6c
 RUN apt-get update -qq && \
   apt-get -y --allow-unauthenticated install\
