@@ -1,4 +1,4 @@
-FROM node:18.13-alpine
+FROM node:18.16.1-alpine
 
 # Add dependencies which are needed by the client but not part of the ARM images
 RUN apk --update --no-cache add \

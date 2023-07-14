@@ -6,9 +6,6 @@ services:
     tty: true
     volumes:
       - app:/app
-#    environment:
-#      - DATABASE_URL=postgres://postgres@db:5432/template_dev
-#      - DATABASE_TEST_URL=postgres://postgres@db:5432/template_test
 #    depends_on:
 #      - db
     ports:
@@ -18,7 +15,7 @@ services:
       - default
 
 #  db:
-#    image: postgres:14.5-alpine
+#    image: postgres:15.3-alpine
 #    command: 'postgres -c "max_connections=200"'
 #    ports:
 #      - 5432:5432
