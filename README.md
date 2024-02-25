@@ -79,7 +79,7 @@ on container start as well as spawning a `phx.server` via the
 
 You might want to adapt the naming of the Docker stack images like use something
 more meaningful than f.e. `template-mutagen` for the sync container. Please check
-and replace occurrences in the followind file:
+and replace occurrences in the following file:
 
 - `docker-compose.yml`
 
