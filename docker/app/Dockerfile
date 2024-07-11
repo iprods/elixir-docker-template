@@ -1,4 +1,4 @@
-FROM hexpm/elixir:1.16.1-erlang-26.2.2-debian-bookworm-20240130-slim
+FROM hexpm/elixir:1.17.1-erlang-27.0-debian-bookworm-20240612-slim
 # Install basic dependencies see https://medium.com/@ricardo.trindade743/setting-up-phoenix-postgresql-with-docker-compose-for-local-development-afeb4a4ace6c
 RUN apt-get update -qq && \
   apt-get -y --allow-unauthenticated install\
